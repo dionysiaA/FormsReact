@@ -28952,7 +28952,7 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'col-xs-10' },
-							_react2.default.createElement('input', { onChange: props.handleChange, className: 'form-control', type: 'text' })
+							_react2.default.createElement('input', { onChange: props.handleChange, value: props.inputValue, className: 'form-control', type: 'text' })
 						)
 					),
 					_react2.default.createElement(
@@ -28963,7 +28963,7 @@
 							{ className: 'col-xs-10 col-xs-offset-2' },
 							_react2.default.createElement(
 								'button',
-								{ onClick: props.handleSubmit, type: 'submit', className: 'btn btn-success' },
+								{ disabled: props.buttonStatus, onClick: props.handleSubmit, type: 'submit', className: 'btn btn-success' },
 								'Create Playlist'
 							)
 						)
@@ -29123,6 +29123,7 @@
 	    _this.state = {
 	      inputValue: ''
 	    };
+	    _this.disabled = false;
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleSubmitChange = _this.handleSubmitChange.bind(_this);
 	    return _this;
@@ -29132,6 +29133,7 @@
 	    key: 'handleChange',
 	    value: function handleChange(evt) {
 	      var value = evt.target.value;
+	      this.disabled = value.length > 16 ? true : false;
 	      this.setState({
 	        inputValue: value
 	      });
@@ -29141,11 +29143,17 @@
 	    value: function handleSubmitChange(evt) {
 	      console.log(evt, 'submit change');
 	      console.log(this.state.inputValue);
+	      this.setState({ inputValue: '' });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_NewPlaylist2.default, { handleChange: this.handleChange, handleSubmit: this.handleSubmitChange });
+	      return _react2.default.createElement(_NewPlaylist2.default, {
+	        handleChange: this.handleChange,
+	        handleSubmit: this.handleSubmitChange,
+	        inputValue: this.state.inputValue,
+	        buttonStatus: this.disabled
+	      });
 	    }
 	  }]);
 	
