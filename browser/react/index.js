@@ -9,14 +9,16 @@ import Artist from './components/Artist';
 import Songs from './components/Songs';
 import NewPlaylist from './components/NewPlaylist';
 import FilterableArtistsContainer from './containers/FilterableArtistsContainer';
-
+import NewPlaylistContainer from './containers/NewPlaylistContainer';
  
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path='/' component={AppContainer} foo={'foo'}>
       <Route path="/albums" component={Albums} />
       <Route path="/albums/:albumId" component={Album} />
-      <Route path='/newplaylist' component={NewPlaylist} />
+      <Route path='/newplaylist' component={NewPlaylistContainer} />
+
+
       <Route path="/artists" component={FilterableArtistsContainer}/>
       <Route path="/artists/:artistId" component={Artist}>
         <Route path="/artists/:artistId/albums" component={Albums} />
